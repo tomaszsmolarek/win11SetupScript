@@ -28,8 +28,8 @@ $Bloatware = @(
     "*Viber*", "*ACGMediaPlayer*", "*Netflix*", "*OneCalendar*",
     "*LinkedInforWindows*", "*HiddenCityMysteryofShadows*", "*Hulu*",
     "*HiddenCity*", "*AdobePhotoshopExpress*", "*HotspotShieldFreeVPN*",
-    "*Microsoft.Advertising.Xaml*",
-#"MicrosoftTeams*", "Microsoft.OneDriveSync",
+    "*Microsoft.Advertising.Xaml*", "MicrosoftTeams*",
+#"Microsoft.OneDriveSync",
     "Microsoft.Todos"
 #    , 
 #"Microsoft.549981C3F5F10_8wekyb3d8bbwe"
