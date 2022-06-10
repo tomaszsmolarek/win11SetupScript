@@ -23,26 +23,38 @@ $Bloatware = @(
     "*ActiproSoftwareLLC*", "*AdobeSystemsIncorporated.AdobePhotoshopExpress*",
     "*Duolingo-LearnLanguagesforFree*", "*PandoraMediaInc*", "*CandyCrush*",
     "*BubbleWitch3Saga*", "*Wunderlist*", "*Flipboard*", "*Twitter*",
-    "*Facebook*", "*Royal Revolt*", "*Sway*", "*Speed Test*", "*Dolby*",
+    "*Facebook*", "*Royal Revolt*", "*Sway*", "*Speed Test*",
+#"*Dolby*",
     "*Viber*", "*ACGMediaPlayer*", "*Netflix*", "*OneCalendar*",
     "*LinkedInforWindows*", "*HiddenCityMysteryofShadows*", "*Hulu*",
     "*HiddenCity*", "*AdobePhotoshopExpress*", "*HotspotShieldFreeVPN*",
-    "*Microsoft.Advertising.Xaml*", "MicrosoftTeams*", "Microsoft.OneDriveSync",
-    "Microsoft.Todos", "Microsoft.549981C3F5F10_8wekyb3d8bbwe"
+    "*Microsoft.Advertising.Xaml*",
+#"MicrosoftTeams*", "Microsoft.OneDriveSync",
+    "Microsoft.Todos"
+#    , 
+#"Microsoft.549981C3F5F10_8wekyb3d8bbwe"
 )
 
 $services = @(
+# good list with explenation https://github.com/ChrisTitusTech/win10script/blob/master/win10debloat.ps1
     "diagnosticshub.standardcollector.service", "DiagTrack",
-    "dmwappushsvc", "DPS", "MapsBroker", "NetTcpPortSharing",                
-    "RemoteAccess", "RemoteRegistry", "WMPNetworkSvc",
+    "dmwappushsvc", "DPS", "MapsBroker", 
+#"NetTcpPortSharing",                
+#"RemoteAccess", "RemoteRegistry", "WMPNetworkSvc",
     "WerSvc", "Fax", "fhsvc", "gupdate", "gupdatem",                   
-    "MSDTC", "WpcMonSvc", "PhoneSvc", "WPDBusEnum",                        
-    "lmhosts", "wisvc", "FontCache", "RetailDemo",                          
+    "MSDTC", "WpcMonSvc", "PhoneSvc", 
+#"WPDBusEnum",                        
+#"lmhosts",
+    "wisvc", 
+#"FontCache", 
+    "RetailDemo",                          
     "ALG", "SCardSvr", "EntAppSvc", "edgeupdate",               
-    "edgeupdatem", "SEMgrSvc", "BcastDVRUserService_48486de",               
-    "CaptureService_48486de", "HvHost", "vmickvpexchange",
-    "vmicguestinterface", "vmicshutdown", "vmicheartbeat",
-    "vmicvmsession", "vmicrdv", "vmictimesync" 
+    "edgeupdatem", "SEMgrSvc", "BcastDVRUserService_48486de"
+#,               
+#"CaptureService_48486de", 
+#"HvHost", "vmickvpexchange",
+#"vmicguestinterface", "vmicshutdown", "vmicheartbeat",
+#"vmicvmsession", "vmicrdv", "vmictimesync" 
 )
 
 
@@ -53,15 +65,15 @@ $services = @(
 Enable-ComputerRestore -Drive "C:\"
 Checkpoint-Computer -Description "setupWin11 Script" -RestorePointType "MODIFY_SETTINGS"
 
-# ---------------------------------------------------------------------
-# O&O Shutup 10
-# ---------------------------------------------------------------------
-
-Start-BitsTransfer "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe"
-Start-BitsTransfer "https://raw.githubusercontent.com/fedoz13/win11SetupScript/main/shutup10conf.cfg"
-Start-Process -FilePath "./OOSU10.exe" -ArgumentList 'shutup10conf.cfg /quiet' -Wait
-Remove-Item -Path ".\OOSU10.exe" -Force
-Remove-Item -Path ".\shutup10conf.cfg" -Force
+## ---------------------------------------------------------------------
+## O&O Shutup 10
+## ---------------------------------------------------------------------
+#
+#Start-BitsTransfer "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe"
+#Start-BitsTransfer "https://raw.githubusercontent.com/fedoz13/win11SetupScript/main/shutup10conf.cfg"
+#Start-Process -FilePath "./OOSU10.exe" -ArgumentList 'shutup10conf.cfg /quiet' -Wait
+#Remove-Item -Path ".\OOSU10.exe" -Force
+#Remove-Item -Path ".\shutup10conf.cfg" -Force
 
 # ---------------------------------------------------------------------
 # Design
@@ -89,20 +101,20 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 # Remove Search from Taskbar
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -type "Dword" -Value "0"
 
-# New Boot Animation
-If (!(Test-Path "HKLM:\SYSTEM\ControlSet001\Control\BootControl")) {
-    New-Item -Path "HKLM:\SYSTEM\ControlSet001\Control" -Name "BootControl"
-}
-New-ItemProperty -Path "HKLM:\SYSTEM\ControlSet001\Control\BootControl" -Name "BootProgressAnimation" -Value "1" -PropertyType "Dword"
+## New Boot Animation
+#If (!(Test-Path "HKLM:\SYSTEM\ControlSet001\Control\BootControl")) {
+#    New-Item -Path "HKLM:\SYSTEM\ControlSet001\Control" -Name "BootControl"
+#}
+#New-ItemProperty -Path "HKLM:\SYSTEM\ControlSet001\Control\BootControl" -Name "BootProgressAnimation" -Value "1" -PropertyType "Dword"
 
 # Enable Windows Explorer Compact View
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -type "Dword" -Name "UseCompactMode" -Value "1"
 
-# Enable Windows Dark Theme
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -type "Dword" -Name "SystemUsesLightTheme" -Value "0"
+## Enable Windows Dark Theme
+#Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -type "Dword" -Name "SystemUsesLightTheme" -Value "0"
 
-# Enable App Dark Theme
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -type "Dword" -Name "AppsUseLightTheme" -Value "0"
+## Enable App Dark Theme
+#Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" -type "Dword" -Name "AppsUseLightTheme" -Value "0"
 
 
 # ---------------------------------------------------------------------
